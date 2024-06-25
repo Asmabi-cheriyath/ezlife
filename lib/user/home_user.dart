@@ -1,5 +1,13 @@
+import 'package:ezlife/user/activity_user.dart';
+import 'package:ezlife/user/book_user.dart';
+import 'package:ezlife/user/buy_sell_user.dart';
+import 'package:ezlife/user/care_user.dart';
 import 'package:ezlife/user/chats_user.dart';
+import 'package:ezlife/user/gate_update_user.dart';
+import 'package:ezlife/user/maintance_user.dart';
+import 'package:ezlife/user/more_user.dart';
 import 'package:ezlife/user/noti_user.dart';
+import 'package:ezlife/user/payment_user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -12,15 +20,24 @@ class HomeUser extends StatefulWidget {
 }
 
 class _HomeUserState extends State<HomeUser> {
-  List facilities = [
-    "payment",
-    "Gate Updates",
-    "Booking",
-    "Care",
-    "Activities",
-    "Maintanance",
-    "Buy/Sell",
-    "More"
+  List<Map<String, dynamic>> facilities = [
+    {'fac': "Payment", 'navigatto': PayUser()},
+    {'fac': "Gate Update", 'navigatto': GateUpdateUser()},
+    {'fac': "Booking", 'navigatto': BookUser()},
+    {'fac': "Care", 'navigatto': CareUser()},
+    {'fac': "Activities", 'navigatto': ActivityUser()},
+    {'fac': "Maintanance", 'navigatto': MaintenanceUser()},
+    {'fac': "Buy/Sell", 'navigatto': BuySellUser()},
+    {'fac': "More", 'navigatto': MoreUser()},
+
+    // "payment",
+    // "Gate Updates",
+    // "Booking",
+    // "Care",
+    // "Activities",
+    // "Maintanance",
+    // "Buy/Sell",
+    // "More"
   ];
 
   List<Color> facColor = [
@@ -55,8 +72,6 @@ class _HomeUserState extends State<HomeUser> {
 
   @override
   Widget build(BuildContext context) {
-    
-
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
@@ -75,16 +90,22 @@ class _HomeUserState extends State<HomeUser> {
             Icon(Icons.waving_hand_rounded),
           ],
         ),
-        actions:  [
-          IconButton(onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChatUser()));
-          }, icon: Icon(Icons.chat_outlined)),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => ChatUser()));
+              },
+              icon: Icon(Icons.chat_outlined)),
           SizedBox(
             width: 20,
           ),
-          IconButton(onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>NotiUser()));
-          }, icon: Icon(Icons.notifications_none)),
+          IconButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => NotiUser()));
+              },
+              icon: Icon(Icons.notifications_none)),
           SizedBox(
             width: 20,
           ),
@@ -159,25 +180,32 @@ class _HomeUserState extends State<HomeUser> {
                       itemBuilder: (context, index) {
                         return Column(
                           children: [
-                            Container(
-                              height: 50,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  // image: DecorationImage(image: AssetImage(facImage[index])),
-                                  // color: facColor[index],
-                                  image: DecorationImage(
-                                      image: AssetImage(facImage[index]),
-                                      fit: BoxFit.cover),
-                                  shape: BoxShape.circle),
-                              // child: Center(child:
-                              // facColor[index],
-                              // ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        facilities[index]["navigatto"]));
+                              },
+                              child: Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                    // image: DecorationImage(image: AssetImage(facImage[index])),
+                                    // color: facColor[index],
+                                    image: DecorationImage(
+                                        image: AssetImage(facImage[index]),
+                                        fit: BoxFit.cover),
+                                    shape: BoxShape.circle),
+                                // child: Center(child:
+                                // facColor[index],
+                                // ),
+                              ),
                             ),
                             const SizedBox(
                               height: 10,
                             ),
                             Text(
-                              facilities[index],
+                              facilities[index]["fac"],
                               style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w500,
@@ -262,13 +290,15 @@ class _HomeUserState extends State<HomeUser> {
           backgroundColor: Colors.white10,
           type: BottomNavigationBarType.fixed,
           items: [
-            const BottomNavigationBarItem(label: "", icon: Icon(Icons.home_outlined)),
+            const BottomNavigationBarItem(
+                label: "", icon: Icon(Icons.home_outlined)),
             const BottomNavigationBarItem(
                 label: "", icon: Icon(Icons.person_2_outlined)),
             const BottomNavigationBarItem(
                 label: "", icon: Icon(Icons.category_outlined)),
             const BottomNavigationBarItem(label: "", icon: Icon(Icons.search)),
-            BottomNavigationBarItem(label: "",
+            BottomNavigationBarItem(
+              label: "",
               icon: Container(
                 height: 25,
                 width: 50,
