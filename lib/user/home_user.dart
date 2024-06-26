@@ -142,148 +142,150 @@ class _HomeUserState extends State<HomeUser> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         )),
-        child: Column(
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 10, left: 8, right: 8),
-              child: SizedBox(
-                height: 40,
-                child: SearchBar(
-                  hintText: "Search",
-                  hintStyle: MaterialStatePropertyAll(
-                      TextStyle(color: Colors.black45, fontSize: 14)),
-                  leading: Icon(Icons.search),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(top: 10, left: 8, right: 8),
+                child: SizedBox(
+                  height: 40,
+                  child: SearchBar(
+                    hintText: "Search",
+                    hintStyle: MaterialStatePropertyAll(
+                        TextStyle(color: Colors.black45, fontSize: 14)),
+                    leading: Icon(Icons.search),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Text(
-              "Our Facilities",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20, left: 10, right: 10),
-              child: Column(
-                children: [
-                  GridView.builder(
-                      itemCount: facilities.length,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 4, childAspectRatio: 1.1),
+              const SizedBox(
+                height: 5,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                "Our Facilities",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20, left: 10, right: 10),
+                child: Column(
+                  children: [
+                    GridView.builder(
+                        itemCount: facilities.length,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 4, childAspectRatio: 1.1),
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          facilities[index]["navigatto"]));
+                                },
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                      // image: DecorationImage(image: AssetImage(facImage[index])),
+                                      // color: facColor[index],
+                                      image: DecorationImage(
+                                          image: AssetImage(facImage[index]),
+                                          fit: BoxFit.cover),
+                                      shape: BoxShape.circle),
+                                  // child: Center(child:
+                                  // facColor[index],
+                                  // ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                facilities[index]["fac"],
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black.withOpacity(0.6)),
+                              )
+                            ],
+                          );
+                        })
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Community Buzz",
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                    ),
+                    Text(
+                      "View All",
+                      style: TextStyle(fontSize: 13, color: Colors.blue),
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10, left: 10),
+                child: Container(
+                  height: 280,
+                  child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                        facilities[index]["navigatto"]));
-                              },
-                              child: Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                    // image: DecorationImage(image: AssetImage(facImage[index])),
-                                    // color: facColor[index],
-                                    image: DecorationImage(
-                                        image: AssetImage(facImage[index]),
-                                        fit: BoxFit.cover),
-                                    shape: BoxShape.circle),
-                                // child: Center(child:
-                                // facColor[index],
-                                // ),
+                        return InkWell(
+                          onTap: () {
+                            // heading: colors.[index]["heading"],
+                            // subheading:colors.[index]["subheading"],
+                            // color:colors.[index]["color"];
+                          },
+                          child: Container(
+                            width: 300,
+                            height: 150,
+                            decoration: BoxDecoration(
+                                color: Colors.red,
+                                // color: colors[index]['color'],
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      const Spacer(),
+                                      CircleAvatar(
+                                        radius: 25,
+                                        backgroundImage:
+                                            AssetImage(facImage[index]),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              facilities[index]["fac"],
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black.withOpacity(0.6)),
-                            )
-                          ],
-                        );
-                      })
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Community Buzz",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                  ),
-                  Text(
-                    "View All",
-                    style: TextStyle(fontSize: 13, color: Colors.blue),
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10, left: 10),
-              child: Container(
-                height: 280,
-                child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          // heading: colors.[index]["heading"],
-                          // subheading:colors.[index]["subheading"],
-                          // color:colors.[index]["color"];
-                        },
-                        child: Container(
-                          width: 300,
-                          height: 150,
-                          decoration: BoxDecoration(
-                              color: Colors.red,
-                              // color: colors[index]['color'],
-                              borderRadius: BorderRadius.circular(15)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    const Spacer(),
-                                    CircleAvatar(
-                                      radius: 25,
-                                      backgroundImage:
-                                          AssetImage(facImage[index]),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
                           ),
-                        ),
-                      );
-                    },
-                    separatorBuilder: (context, index) => const SizedBox(
-                          width: 10,
-                        ),
-                    itemCount: 4),
+                        );
+                      },
+                      separatorBuilder: (context, index) => const SizedBox(
+                            width: 10,
+                          ),
+                      itemCount: 4),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
