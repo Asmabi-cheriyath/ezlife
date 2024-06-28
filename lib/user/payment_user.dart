@@ -11,6 +11,13 @@ class PayUser extends StatefulWidget {
 }
 
 class _PayUserState extends State<PayUser> {
+
+  List<Map<String, dynamic>> payments = [
+    {'payfor': "Pay Dues", 'date':"12/2/2024" ,"amount":"\$1800"},
+    {'payfor': "Maintenance", 'date': "04/05/2023","amount":"\$4500"},
+    {'payfor': "Utility", 'date':"07/06/2024" ,"amount":"\$2000"},
+  ];
+
   @override
   Widget build(BuildContext context) {
     final themedata = Theme.of(context);
@@ -75,23 +82,23 @@ class _PayUserState extends State<PayUser> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "  adadad",
+                           Text(
+                            payments[index]["payfor"],
                             style: TextStyle(
                                 fontSize: 25, fontWeight: FontWeight.w500),
                           ),
                           const SizedBox(
                             height: 40,
                           ),
-                          const Row(
+                           Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text(
-                                "  Last Date",
+                                payments[index]["date"],
                               ),
                               Spacer(),
                               Text(
-                                "123  ",
+                                payments[index]["amount"],
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               )
