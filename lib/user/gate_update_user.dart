@@ -1,5 +1,9 @@
+import 'package:ezlife/tabs/helpers_tab.dart';
+import 'package:ezlife/tabs/parcel_tab.dart';
+import 'package:ezlife/tabs/visitors_tab.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class GateUpdateUser extends StatefulWidget {
   const GateUpdateUser({super.key});
@@ -11,21 +15,23 @@ class GateUpdateUser extends StatefulWidget {
 class _GateUpdateUserState extends State<GateUpdateUser> {
   @override
   Widget build(BuildContext context) {
-        final themedata=Theme.of(context);
+    final themedata = Theme.of(context);
 
     return SafeArea(
-      child: Scaffold(
-         appBar: AppBar(
-            backgroundColor: Colors.transparent,
+      child: DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor:  Color.fromARGB(255, 188, 161, 157),
             elevation: 0.0,
-            toolbarHeight: 70,
+            toolbarHeight: 55,
             leading: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: IconButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.arrow_back,
                       color: Colors.white,
                     ))),
@@ -35,15 +41,28 @@ class _GateUpdateUserState extends State<GateUpdateUser> {
                 style: themedata.textTheme.displayMedium,
               ),
             ],
-            flexibleSpace: Container(
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20)),
-                  color: Color.fromARGB(255, 188, 161, 157)),
-                  child: Column()
-            ),
-          ), 
+            // flexibleSpace: Container(
+            //     decoration: const BoxDecoration(
+            //         borderRadius: BorderRadius.only(
+            //             bottomLeft: Radius.circular(20),
+            //             bottomRight: Radius.circular(20)),
+            //         color: Color.fromARGB(255, 188, 161, 157)),
+            //     ),
+            bottom: TabBar(unselectedLabelStyle: themedata.textTheme.displayMedium,
+            labelColor: Colors.black,
+            indicatorColor: Colors.black,
+            tabs: const [
+                  Tab(
+                    text: "Visitors",
+                  ),
+                  Tab(
+                    text: "Parcel",
+                  ),
+                  Tab(
+                    text: "Helpers",
+                  )
+                ]),
+          ),
           body: Container(
             height: double.infinity,
             width: double.infinity,
@@ -57,8 +76,20 @@ class _GateUpdateUserState extends State<GateUpdateUser> {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             )),
-            
-          ), 
+            child: const Column(
+              children: [
+               
+                Expanded(
+                  child: TabBarView(children: [
+                    Visitors(),
+                    Parcel(),
+                    Helpers(),
+                  ]),
+                )
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
