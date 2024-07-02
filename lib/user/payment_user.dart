@@ -144,18 +144,22 @@ class _PayUserState extends State<PayUser> {
             Center(
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 70),
-                child: Container(
-                  height: 50,
-                  width: 120,
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 148, 105, 102),
-                      border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(25)),
-                  child: Center(
-                      child: Text(
-                    "Pay All",
-                    style: themedata.textTheme.displayMedium,
-                  )),
+                child: InkWell(onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Pay2User()));
+                },
+                  child: Container(
+                    height: 50,
+                    width: 120,
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 148, 105, 102),
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(25)),
+                    child: Center(
+                        child: Text(
+                      "Pay All",
+                      style: themedata.textTheme.displayMedium,
+                    )),
+                  ),
                 ),
               ),
             )

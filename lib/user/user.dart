@@ -21,7 +21,7 @@ class _UserState extends State<User> {
           width: double.infinity,
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("asset/flat21.jpg"), fit: BoxFit.cover)),
+                  image: AssetImage("asset/flat1.jpg"), fit: BoxFit.cover)),
           child: Column(
             children: [
               SizedBox(

@@ -105,7 +105,7 @@ class _Pay2UserState extends State<Pay2User> {
                   Padding(
                     padding: EdgeInsets.all(8.0),
                     child: CircleAvatar(
-                      backgroundImage: AssetImage("images/gpay1.jpeg"),
+                      backgroundImage: AssetImage("asset/gpay1.jpeg"),
                     ),
                   )
                 ],
@@ -141,7 +141,7 @@ class _Pay2UserState extends State<Pay2User> {
                   Padding(
                     padding: EdgeInsets.all(8.0),
                     child: CircleAvatar(
-                      backgroundImage: AssetImage("images/phonepay.jpeg"),
+                      backgroundImage: AssetImage("asset/phonepay.jpeg"),
                     ),
                   )
                 ],
@@ -177,7 +177,7 @@ class _Pay2UserState extends State<Pay2User> {
                   Padding(
                     padding: EdgeInsets.all(8.0),
                     child: CircleAvatar(
-                      backgroundImage: AssetImage("images/paytm.jpeg"),
+                      backgroundImage: AssetImage("asset/paytm.jpeg"),
                     ),
                   )
                 ],
@@ -213,7 +213,7 @@ class _Pay2UserState extends State<Pay2User> {
                   Padding(
                     padding: EdgeInsets.all(8.0),
                     child: CircleAvatar(
-                      backgroundImage: AssetImage("images/bobupi.jpeg"),
+                      backgroundImage: AssetImage("asset/bobupi.jpeg"),
                       child: DecoratedBox(
                           decoration: BoxDecoration(
                         boxShadow: [

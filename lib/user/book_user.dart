@@ -1,3 +1,4 @@
+import 'package:ezlife/user/book2_user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -100,18 +101,22 @@ class _BookUserState extends State<BookUser> {
                             const Spacer(),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                    height: 40,
-                    width: 80,
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 14, 146, 212),
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Center(
-                        child: Text(
-                      "Book",
-                    )),
-                  ),
+                              child: InkWell(onTap: (){
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Book2User()));
+                              },
+                                child: Container(
+                                                    height: 40,
+                                                    width: 80,
+                                                    decoration: BoxDecoration(
+                                                        color: Color.fromARGB(255, 14, 146, 212),
+                                                        border: Border.all(color: Colors.white),
+                                                        borderRadius: BorderRadius.circular(15)),
+                                                    child: Center(
+                                                        child: Text(
+                                                      "Book",
+                                                    )),
+                                                  ),
+                              ),
                             )
                           ],
                         ),
